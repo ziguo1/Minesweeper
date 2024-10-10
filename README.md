@@ -1,3 +1,5 @@
+Demo code taken from (Disco Mindsweeper)[https://github.com/1337elitehacker/Minesweeper]
+
 Minesweeper
 ==================
 
