@@ -33,10 +33,10 @@ public void draw()
 public void mouseClicked() 
 {
   for (MSButton[] row : buttons) {
-    for (MSButton butt : row) {
-      if (mouseX >= butt.x && mouseX <= (butt.x + butt.width)) {
-        if (mouseY >= butt.y && mouseY <= (butt.y + butt.height)) {
-          butt.mousePressed();
+    for (MSButton b : row) {
+      if (mouseX >= b.x && mouseX <= (b.x + b.width)) {
+        if (mouseY >= b.y && mouseY <= (b.y + b.height)) {
+          b.mousePressed();
           return;
         }
       }
