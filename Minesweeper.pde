@@ -1,4 +1,3 @@
-import de.bezier.guido.*;
 //Declare and initialize constants NUM_ROWS and NUM_COLS = 20
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
@@ -7,9 +6,6 @@ void setup ()
 {
     size(400, 400);
     textAlign(CENTER,CENTER);
-    
-    // make the manager
-    Interactive.make( this );
     
     //your code to initialize buttons goes here
     
@@ -22,12 +18,32 @@ public void setMines()
     //your code
 }
 
-public void draw ()
+public void draw() 
 {
-    background( 0 );
-    if(isWon() == true)
+    background(0);
+    if (isWon())
         displayWinningMessage();
+    for (MSButton[] row : buttons) {
+      for (MSButton b : row) {
+        b.draw();
+      }
+    }
 }
+
+public void mouseClicked() 
+{
+  for (MSButton[] row : buttons) {
+    for (MSButton butt : row) {
+      if (mouseX >= butt.x && mouseX <= (butt.x + butt.width)) {
+        if (mouseY >= butt.y && mouseY <= (butt.y + butt.height)) {
+          butt.mousePressed();
+          return;
+        }
+      }
+    } 
+  }
+}
+
 public boolean isWon()
 {
     //your code here
@@ -55,7 +71,7 @@ public int countMines(int row, int col)
 public class MSButton
 {
     private int myRow, myCol;
-    private float x,y, width, height;
+    public float x,y, width, height;
     private boolean clicked, flagged;
     private String myLabel;
     
@@ -69,10 +85,8 @@ public class MSButton
         y = myRow*height;
         myLabel = "";
         flagged = clicked = false;
-        Interactive.add( this ); // register it with the manager
     }
 
-    // called by manager
     public void mousePressed () 
     {
         clicked = true;
